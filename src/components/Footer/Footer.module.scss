@@ -1,0 +1,11 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  width: '35%';
+  text-align: center;
+  margin: 0 auto;
+  padding: 2rem 0;
+  a {
+    color: getColor(links);
+  }
+}
