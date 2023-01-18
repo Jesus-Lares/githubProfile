@@ -1,59 +1,64 @@
+import { GetServerSideProps } from 'next'
+import { bundleMDX } from 'mdx-bundler'
+import path from 'path'
+
+import { UserInfo, ShowReadme } from '@/components'
+
 import styles from '@styles/Home.module.scss'
 
-export default function Home() {
+process.env.ESBUILD_BINARY_PATH = path.join(
+  process.cwd(),
+  'node_modules',
+  'esbuild',
+  'bin',
+  'esbuild'
+)
+
+interface Props {
+  mdxSource: string
+}
+
+export default function Home({ mdxSource }: Props) {
   return (
     <div className={styles.container}>
-      <section className="info">
-        <span>Img</span>
-        <div className="infoUser">
-          <h1>Jesús Lares</h1>
-          <h2>Jesus-Lares</h2>
-          <div className="infoUser_follows">
-            <div className="followers">4 followers</div>
-            <div className="following">4 following</div>
-          </div>
-        </div>
-        <div className="information">
-          <h3>Information</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil
-            doloremque, quo, maiores distinctio consequatur ad dicta sunt non
-            sapiente corrupti animi sint neque natus. Est dicta eos rerum
-            distinctio iste.
-          </p>
+      <div className={styles.info}>
+        <UserInfo />
+      </div>
+
+      <div className={styles.userData}>
+        <section className={styles.readme}>
+          <h3>Readme</h3>
+          <ShowReadme mdxSource={mdxSource} />
+        </section>
+
+        <section className={styles.repos}>
+          <h3>Top repos</h3>
           <ul>
-            <li>Fintecimal</li>
-            <li>contacto@jesuslares.com</li>
-            <li>Guadalajara Jal</li>
-            <li>jesuslares.com</li>
+            <li>repo 1</li>
+            <li>repo 3</li>
+            <li>repo 4</li>
           </ul>
-        </div>
-
-        <div className="achievements">
-          <h3>Achievements</h3>
-          <ul>
-            <li>element 1</li>
-            <li>element 2</li>
-            <li>element 3</li>
-          </ul>
-        </div>
-        <button>View profile</button>
-      </section>
-
-      <section className="readme">
-        <h3>Readme</h3>
-        read readme
-      </section>
-
-      <section className="repos">
-        <h3>Top repos</h3>
-        <ul>
-          <li>repo 1</li>
-          <li>repo 3</li>
-          <li>repo 4</li>
-        </ul>
-        <button>See all</button>
-      </section>
+          <button>See all</button>
+        </section>
+      </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps<{
+  mdxSource: string
+}> = async () => {
+  const userReadme = await fetch(
+    'https://raw.githubusercontent.com/Jesus-Lares/Jesus-Lares/master/README.md'
+  ).then(async (response) => await response.text())
+
+  const result = await bundleMDX({
+    source: userReadme,
+  })
+
+  return {
+    props: {
+      mdxSource: result.code,
+    },
+  }
 }

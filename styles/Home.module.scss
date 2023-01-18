@@ -1,4 +1,50 @@
+@import './variables.scss';
+
 .container {
-  display: flex;
+  display: grid;
+  grid-template-areas: 'info' 'userData';
+  grid-template-rows: auto auto;
+  padding: 2rem 0;
+}
+
+.info {
+  grid-area: info;
   height: 100%;
+}
+
+.userData {
+  grid-area: userData;
+}
+
+.readme {
+  text-align: start;
+  border: 1px solid #373e47;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-left: 0;
+  ul {
+    list-style: initial;
+    margin-left: 1rem;
+  }
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  h3 {
+    margin: 0.5rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #373e47;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .container {
+    grid-template-areas: 'info userData';
+    grid-template-rows: auto;
+    grid-template-columns: min(30%, 296px) 1fr;
+  }
+
+  .readme {
+    margin-left: 1.5rem;
+  }
 }

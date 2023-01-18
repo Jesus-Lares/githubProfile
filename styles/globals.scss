@@ -51,6 +51,19 @@ h3 {
   color: getColor(title);
 }
 
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+  margin-bottom: 0.5rem;
+}
+
 ul {
   list-style: none;
 }
