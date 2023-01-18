@@ -7,10 +7,24 @@
   header {
     grid-area: header;
   }
+
   main {
     grid-area: main;
+    max-width: 1220px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
+
   footer {
     grid-area: footer;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .container {
+    main {
+      padding: 0 2rem;
+    }
   }
 }
