@@ -30,7 +30,8 @@
   gap: 0.5rem;
   font-size: $small-font-size;
   svg {
-    max-height: $small-font-size;
+    max-height: $smaller-font-size;
+    margin: auto 0;
   }
 }
 
@@ -47,7 +48,9 @@
   gap: 0.5rem;
   font-size: $small-font-size;
   svg {
-    max-height: $small-font-size;
+    max-width: $smaller-font-size;
+    max-height: $smaller-font-size;
+    margin: auto 0;
   }
 }
 

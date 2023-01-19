@@ -1,10 +1,38 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { faCab } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import {
+  faBuilding,
+  faCab,
+  faEnvelope,
+  faLink,
+  faLocationDot,
+  faUserGroup,
+} from '@fortawesome/free-solid-svg-icons'
 
 const Icons = [
   {
     name: 'persons',
-    icon: faCab,
+    icon: faUserGroup,
+  },
+  {
+    name: 'company',
+    icon: faBuilding,
+  },
+  {
+    name: 'location',
+    icon: faLocationDot,
+  },
+  {
+    name: 'blog',
+    icon: faLink,
+  },
+  {
+    name: 'email',
+    icon: faEnvelope,
+  },
+  {
+    name: 'twitter_username',
+    icon: faTwitter,
   },
 ]
 
