@@ -7,14 +7,7 @@ import { ItemWithIcon } from '@/components'
 
 import styles from './UserInfo.module.scss'
 
-const publicData = [
-  'company',
-  'location',
-  'blog',
-  'email',
-  'hireable',
-  'twitter_username',
-]
+const publicData = ['company', 'location', 'blog', 'email', 'twitter_username']
 
 const UserInfo = () => {
   const {
