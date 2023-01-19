@@ -17,9 +17,10 @@ const ShowReadme = ({ mdxSource }: Props) => {
   const Component = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
 
   return (
-    <div>
+    <section>
+      <h3>Readme</h3>
       <Component components={components} />
-    </div>
+    </section>
   )
 }
 

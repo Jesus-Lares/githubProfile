@@ -37,6 +37,12 @@
   }
 }
 
+.repos {
+  text-align: start;
+  padding: 1rem;
+  margin-left: 0;
+}
+
 @media screen and (min-width: 767px) {
   .container {
     grid-template-areas: 'info userData';
@@ -45,6 +51,9 @@
   }
 
   .readme {
+    margin-left: 1.5rem;
+  }
+  .repos {
     margin-left: 1.5rem;
   }
 }

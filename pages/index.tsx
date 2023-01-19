@@ -2,7 +2,8 @@ import { GetServerSideProps } from 'next'
 import { bundleMDX } from 'mdx-bundler'
 import path from 'path'
 
-import { UserInfo, ShowReadme } from '@/components'
+import { UserInfo, ShowReadme, Repositories } from '@/components'
+import { repos } from '@/utils/mocks'
 
 import styles from '@styles/Home.module.scss'
 
@@ -26,20 +27,13 @@ export default function Home({ mdxSource }: Props) {
       </div>
 
       <div className={styles.userData}>
-        <section className={styles.readme}>
-          <h3>Readme</h3>
+        <div className={styles.readme}>
           <ShowReadme mdxSource={mdxSource} />
-        </section>
+        </div>
 
-        <section className={styles.repos}>
-          <h3>Top repos</h3>
-          <ul>
-            <li>repo 1</li>
-            <li>repo 3</li>
-            <li>repo 4</li>
-          </ul>
-          <button>See all</button>
-        </section>
+        <div className={styles.repos}>
+          <Repositories repositories={repos} />
+        </div>
       </div>
     </div>
   )
