@@ -1,78 +1,46 @@
 @import '../../../styles/variables.scss';
-// todo obtener estilos de las variables
 
 .section {
-  text-align: start;
-}
-
-.container {
-  display: flex;
-  margin-bottom: 1.5rem;
-}
-
-.img {
-  max-width: max(25vw, 96px);
-  max-height: max(25vw, 96px);
-  border-radius: 50%;
-}
-
-.userInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 0 1rem;
-}
-
-.follows {
-  margin-top: 0.75rem;
-  display: flex;
-  gap: 0.5rem;
-  font-size: $small-font-size;
-  svg {
-    max-height: $smaller-font-size;
-    margin: auto 0;
+  header {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  h3 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: $h1-font-size;
   }
 }
 
 .list {
-  margin-top: 1rem;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 200px);
-  grid-gap: 5px 10px;
-  font-size: $small-font-size;
-}
-
-.publicData {
-  display: flex;
-  gap: 0.5rem;
-  font-size: $small-font-size;
-  svg {
-    max-width: $smaller-font-size;
-    max-height: $smaller-font-size;
-    margin: auto 0;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1.25rem;
 }
 
 .btn {
   background-color: getColor(btnBackground);
-  display: block;
   text-align: center;
   width: 100%;
-  margin: 1rem 0;
+  max-width: 200px;
+  margin: 1rem auto;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
+  border-width: 0;
+  border-style: hidden;
+  cursor: pointer;
+  &:hover {
+    background-color: getColor(container-secondary);
+  }
 }
 
 @media screen and (min-width: 767px) {
-  .container {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .userInfo {
-    justify-content: center;
-    width: 100%;
-    margin: 1rem 0 0;
-  }
 }

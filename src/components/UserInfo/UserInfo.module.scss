@@ -29,8 +29,8 @@
   display: flex;
   gap: 0.5rem;
   font-size: $small-font-size;
-  svg {
-    max-height: $smaller-font-size;
+  img {
+    max-width: $small-font-size;
     margin: auto 0;
   }
 }
@@ -47,9 +47,8 @@
   display: flex;
   gap: 0.5rem;
   font-size: $small-font-size;
-  svg {
-    max-width: $smaller-font-size;
-    max-height: $smaller-font-size;
+  img {
+    max-width: $small-font-size;
     margin: auto 0;
   }
 }
