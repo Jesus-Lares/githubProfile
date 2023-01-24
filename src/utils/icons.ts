@@ -1,43 +1,44 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import {
-  faBuilding,
-  faCab,
-  faEnvelope,
-  faLink,
-  faLocationDot,
-  faUserGroup,
-} from '@fortawesome/free-solid-svg-icons'
-
-const Icons = [
+const Icons: Array<{ name: string; icon: string }> = [
   {
-    name: 'persons',
-    icon: faUserGroup,
+    name: 'people',
+    icon: 'people.svg',
   },
   {
     name: 'company',
-    icon: faBuilding,
+    icon: 'building.svg',
   },
   {
     name: 'location',
-    icon: faLocationDot,
+    icon: 'location.svg',
   },
   {
     name: 'blog',
-    icon: faLink,
+    icon: 'link.svg',
   },
   {
     name: 'email',
-    icon: faEnvelope,
+    icon: 'mail.svg',
   },
   {
     name: 'twitter_username',
-    icon: faTwitter,
+    icon: 'twitter.svg',
+  },
+  {
+    name: 'repository',
+    icon: 'bookmark.svg',
+  },
+  {
+    name: 'star',
+    icon: 'star.svg',
+  },
+  {
+    name: 'fork',
+    icon: 'fork.svg',
   },
 ]
 
-export const getIcons = (name: string): IconDefinition => {
+export const getIcons = (name: string): string => {
   const findIcon = Icons.find((item) => item.name === name)
-  if (findIcon != null) return findIcon.icon
-  return faCab
+  if (findIcon?.icon == null) return 'github_logo.svg'
+  return `icons/${findIcon.icon}`
 }

@@ -27,7 +27,6 @@ const UserInfo = () => {
           src={avatar}
           alt="Avatar of the user"
           quality={80}
-          layout="responsive"
           width={296}
           height={296}
           priority
@@ -40,7 +39,7 @@ const UserInfo = () => {
           <a href={htmlUrl} target="_blank" rel="noopener noreferrer">
             <h2>{login}</h2>
           </a>
-          <ItemWithIcon styles={styles.follows} iconName="persons">
+          <ItemWithIcon styles={styles.follows} iconName="people">
             <div>{followers} followers</div>
             <div>{following} following</div>
           </ItemWithIcon>
@@ -50,9 +49,9 @@ const UserInfo = () => {
       <h3>Information</h3>
       <p>{bio}</p>
       <ul className={styles.list}>
-        {publicData.map((item) => {
+        {publicData.map((item, index) => {
           const value = user[item]
-          if (value === null) return <Fragment />
+          if (value === null) return <Fragment key={index} />
           return (
             <li key={item}>
               <ItemWithIcon styles={styles.publicData} iconName={item}>

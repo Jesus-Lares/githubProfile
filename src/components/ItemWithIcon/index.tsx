@@ -1,7 +1,8 @@
 import { memo, PropsWithChildren } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { getIcons } from '@/utils/icons'
+import { myLoader } from '@/utils/helpers'
+import Image from 'next/image'
 
 interface Props extends PropsWithChildren {
   styles?: any
@@ -11,7 +12,16 @@ interface Props extends PropsWithChildren {
 const ItemWithIcon = ({ children, styles, iconName = 'persons' }: Props) => {
   return (
     <div className={styles}>
-      <FontAwesomeIcon icon={getIcons(iconName)} />
+      <Image
+        src={getIcons(iconName)}
+        alt={iconName}
+        quality={80}
+        width={16}
+        height={16}
+        priority
+        loader={myLoader}
+        unoptimized
+      />
       {children}
     </div>
   )
