@@ -51,7 +51,7 @@ const UserInfo = ({ user }: { user: User }) => {
       <ul className={styles.list}>
         {publicData.map((item, index) => {
           const value = user[item]
-          if (value === null) return <Fragment key={index} />
+          if (value === null || value === '') return <Fragment key={index} />
           return (
             <li key={item}>
               <ItemWithIcon styles={styles.publicData} iconName={item}>

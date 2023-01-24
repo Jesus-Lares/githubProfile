@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo, useState } from 'react'
 
 import { Dropdown, RepoItem } from '@/components'
 import { sortElements } from '@/utils/operations'
-import { Repository } from '@/utils/mocks/repos'
+import { Repository } from '@/Interfaces'
 
 import styles from './Repositories.module.scss'
 
@@ -24,19 +24,23 @@ const Repositories = ({ repositories }: Props) => {
 
   const getTopRepos = () => {
     const sortProperty = map[type as keyof typeof map]
-    const removeForks = repositories.filter((repo) => !repo.fork)
     const sorted = sortElements({
-      elements: removeForks,
+      elements: repos,
       identifier: sortProperty,
     })
     return sorted.slice(0, limit)
   }
 
+  const repos = useMemo(() => {
+    if (repositories.length === 0) return []
+    return repositories.filter((repo) => !repo.fork)
+  }, [repositories])
+
   const filterRepositories = useMemo(() => {
     if (repositories.length === 0) return []
     const values = getTopRepos()
     return values
-  }, [repositories, type, limit])
+  }, [repos, type, limit])
 
   const handleOnClick = useCallback(() => {
     if (limit < 0) {
@@ -64,9 +68,11 @@ const Repositories = ({ repositories }: Props) => {
           <RepoItem repository={repository} key={repository.id} />
         ))}
       </ul>
-      <button onClick={handleOnClick} className={styles.btn}>
-        {limit < 0 ? 'Show less' : 'See all'}
-      </button>
+      {repos.length > 8 ? (
+        <button onClick={handleOnClick} className={styles.btn}>
+          {limit < 0 ? 'Show less' : 'See all'}
+        </button>
+      ) : null}
     </section>
   )
 }

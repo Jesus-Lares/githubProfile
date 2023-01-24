@@ -43,6 +43,13 @@
   margin-left: 0;
 }
 
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 @media screen and (min-width: 767px) {
   .container {
     grid-template-areas: 'info userData';
