@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { Navbar, Footer } from '..'
+
+import { Navbar, Footer } from '@/components'
 
 import styles from './Layout.module.scss'
 

@@ -3,7 +3,7 @@ import { bundleMDX } from 'mdx-bundler'
 import path from 'path'
 
 import { UserInfo, ShowReadme, Repositories } from '@/components'
-import { repos } from '@/utils/mocks'
+import { repos, user } from '@/utils/mocks'
 
 import styles from '@styles/Home.module.scss'
 
@@ -23,7 +23,7 @@ export default function Home({ mdxSource }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <UserInfo />
+        <UserInfo user={user} />
       </div>
 
       <div className={styles.userData}>

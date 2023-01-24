@@ -4,9 +4,9 @@ import styles from './Footer.module.scss'
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container}>
       Build with <a>Next js</a> by Jesús Lares
-    </div>
+    </footer>
   )
 }
 

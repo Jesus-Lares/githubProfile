@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from 'react'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 
 import styles from './Dropdown.module.scss'
 
@@ -24,6 +24,12 @@ const Dropdown = ({ options, value, change, placeholder }: Props) => {
     return 'Selecciona una opción'
   }, [value])
 
+  const onBlurDropdown = useCallback(() => {
+    setTimeout(() => {
+      setOpen(false)
+    }, 200)
+  }, [])
+
   return (
     <div className={`${styles.select} ${isOpen ? styles.open : ''}`}>
       <button
@@ -31,11 +37,7 @@ const Dropdown = ({ options, value, change, placeholder }: Props) => {
           setOpen(!isOpen)
         }}
         className={styles.select_styled}
-        onBlur={() => {
-          setTimeout(() => {
-            setOpen(false)
-          }, 200)
-        }}
+        onBlur={onBlurDropdown}
       >
         {label}
       </button>

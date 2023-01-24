@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { ItemWithIcon } from '../'
+import { ItemWithIcon } from '@/components'
 import { langColors } from '@/utils/langColors'
 import { Repository } from '@/utils/mocks/repos'
 

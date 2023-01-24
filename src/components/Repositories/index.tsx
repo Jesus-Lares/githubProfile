@@ -1,6 +1,6 @@
-import { memo, useMemo, useState } from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 
-import { Dropdown, RepoItem } from '../'
+import { Dropdown, RepoItem } from '@/components'
 import { sortElements } from '@/utils/operations'
 import { Repository } from '@/utils/mocks/repos'
 
@@ -38,6 +38,14 @@ const Repositories = ({ repositories }: Props) => {
     return values
   }, [repositories, type, limit])
 
+  const handleOnClick = useCallback(() => {
+    if (limit < 0) {
+      setLimit(LIMIT)
+      return
+    }
+    setLimit(-1)
+  }, [])
+
   return (
     <section className={styles.section}>
       <header>
@@ -56,17 +64,7 @@ const Repositories = ({ repositories }: Props) => {
           <RepoItem repository={repository} key={repository.id} />
         ))}
       </ul>
-      <button
-        onClick={() => {
-          if (limit < 0) {
-            setLimit(LIMIT)
-            return
-          }
-
-          setLimit(-1)
-        }}
-        className={styles.btn}
-      >
+      <button onClick={handleOnClick} className={styles.btn}>
         {limit < 0 ? 'Show less' : 'See all'}
       </button>
     </section>
