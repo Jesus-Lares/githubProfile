@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 import { ItemWithIcon } from '@/components'
 import { langColors } from '@/utils/langColors'
-import { Repository } from '@/utils/mocks/repos'
+import { Repository } from '@/Interfaces'
 
 import styles from './RepoItem.module.scss'
 

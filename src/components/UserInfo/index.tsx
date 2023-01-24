@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { ItemWithIcon } from '@/components'
 import { myLoader } from '@/utils/helpers'
-import { User } from '@/utils/mocks/user'
+import { User } from '@/Interfaces'
 
 import styles from './UserInfo.module.scss'
 
