@@ -24,7 +24,12 @@ interface Props {
 }
 
 export default function Home({ mdxSource, user, userName, repos }: Props) {
-  if (user == null) return <h2>No se encontro el usuario {userName}</h2>
+  if (user == null)
+    return (
+      <div className={styles.notFound}>
+        <h2>No se encontro el usuario {userName}</h2>
+      </div>
+    )
 
   return (
     <div className={styles.container}>
@@ -51,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const userInfo = await fetch(`https://api.github.com/users/${userName}`).then(
     async (response) => await response.json()
   )
-  if (!userInfo)
+  if (userInfo.message === 'Not Found')
     return {
       props: {
         mdxSource: null,
