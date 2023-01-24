@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { GetServerSideProps } from 'next'
 import { bundleMDX } from 'mdx-bundler'
 import path from 'path'
 
 import { UserInfo, ShowReadme, Repositories } from '@/components'
-import { repos, user } from '@/utils/mocks'
+import { Repository, User } from '@/Interfaces'
 
 import styles from '@styles/Home.module.scss'
 
@@ -16,10 +17,15 @@ process.env.ESBUILD_BINARY_PATH = path.join(
 )
 
 interface Props {
-  mdxSource: string
+  mdxSource: string | null
+  user: User | null
+  repos: Repository[]
+  userName: string
 }
 
-export default function Home({ mdxSource }: Props) {
+export default function Home({ mdxSource, user, userName, repos }: Props) {
+  if (user == null) return <h2>No se encontro el usuario {userName}</h2>
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -39,11 +45,42 @@ export default function Home({ mdxSource }: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  mdxSource: string
-}> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const userName = 'Jesus-Lares'
+
+  const userInfo = await fetch(`https://api.github.com/users/${userName}`).then(
+    async (response) => await response.json()
+  )
+  if (!userInfo)
+    return {
+      props: {
+        mdxSource: null,
+        user: null,
+        repos: null,
+        userName,
+      },
+    }
+
+  const userRepos = await fetch(userInfo.repos_url).then(
+    async (response) => await response.json()
+  )
+  const findReadme = userRepos.find(
+    (repo: Repository) => repo.name === userName
+  )
+
+  if (!findReadme)
+    return {
+      props: {
+        mdxSource: null,
+        user: userInfo,
+        repos: userRepos,
+        userName,
+      },
+    }
+
+  const defaultBranch: string = findReadme.default_branch
   const userReadme = await fetch(
-    'https://raw.githubusercontent.com/Jesus-Lares/Jesus-Lares/master/README.md'
+    `https://raw.githubusercontent.com/${userName}/${userName}/${defaultBranch}/README.md`
   ).then(async (response) => await response.text())
 
   const result = await bundleMDX({
@@ -53,6 +90,9 @@ export const getServerSideProps: GetServerSideProps<{
   return {
     props: {
       mdxSource: result.code,
+      user: userInfo,
+      repos: userRepos,
+      userName,
     },
   }
 }

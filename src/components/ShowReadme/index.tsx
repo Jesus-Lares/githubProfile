@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client'
 import { H1, H2, H3 } from '@/components/Readme'
 
 interface Props {
-  mdxSource: string
+  mdxSource: string | null
 }
 
 const components = {
@@ -15,6 +15,8 @@ const components = {
 }
 
 const ShowReadme = ({ mdxSource }: Props) => {
+  if (mdxSource === null) return <Fragment />
+
   const Component = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
 
   return (
