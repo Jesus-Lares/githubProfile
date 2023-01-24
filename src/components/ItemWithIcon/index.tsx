@@ -2,6 +2,7 @@ import { memo, PropsWithChildren } from 'react'
 
 import { getIcons } from '@/utils/icons'
 import { myLoader } from '@/utils/helpers'
+
 import Image from 'next/image'
 
 interface Props extends PropsWithChildren {

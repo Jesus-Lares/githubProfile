@@ -1,6 +1,7 @@
 import { Fragment, memo, useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
-import { H1, H2, H3 } from '../Readme'
+
+import { H1, H2, H3 } from '@/components/Readme'
 
 interface Props {
   mdxSource: string

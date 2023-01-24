@@ -1,15 +1,15 @@
 import { Fragment, memo } from 'react'
 import Image from 'next/image'
 
-import { user } from '@/utils/mocks'
-import { myLoader } from '@/utils/helpers'
 import { ItemWithIcon } from '@/components'
+import { myLoader } from '@/utils/helpers'
+import { User } from '@/utils/mocks/user'
 
 import styles from './UserInfo.module.scss'
 
 const publicData = ['company', 'location', 'blog', 'email', 'twitter_username']
 
-const UserInfo = () => {
+const UserInfo = ({ user }: { user: User }) => {
   const {
     name,
     login,
